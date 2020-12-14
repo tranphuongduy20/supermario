@@ -32,6 +32,9 @@ Player::Player(float x, float y) : Entity()
 	this->y = y;
 	nx = 1;
 	holdthing = nullptr;
+	startVentTime = GetTickCount64();
+	isInGround = venting;
+	keyUp = keyDown = false;
 }
 
 Player* Player::instance = NULL;
@@ -42,8 +45,29 @@ Player* Player::GetInstance()
 	return instance;
 }
 
+void Player::ExcuteVentProcess() {
+
+}
+
+void Player::BeginVentProcess(bool inGround) {
+	if (keyDown && isInGround) {
+		venting = true;
+		startVentTime = GetTickCount64();
+		isInGround = true;
+	}
+	else if (keyUp && !isInGround) {
+		venting = true;
+		startVentTime = GetTickCount64();
+		isInGround = false;
+	}
+}
+
 void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 {
+	if (venting) {
+		ExcuteVentProcess();
+	}
+
 	//DebugOut(L"X = %f y = %f", x,y);
 	Entity::Update(dt);
 #pragma region Xử lý vy
@@ -225,7 +249,7 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 				}
 				if (e->ny > 0)
 				{
-					brokenBrick->SetState(CBRICK_STATE_COLLISION);
+					brokenBrick->SetState(BROKENBRICK_STATE_COLLISION);
 				}
 			}
 			else if (e->obj->GetType() == EntityType::BRICKSTAND)

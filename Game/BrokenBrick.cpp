@@ -42,6 +42,10 @@ void BrokenBrick::Render()
 {
 	if (isHide)
 		return;
+	if (isColliBrokenbrick)
+	{
+		animationSet->at(4)->Render(nx, x, y);
+	}
 	/*if (isDestroyed)
 		return;*/
 	RenderBoundingBox();
@@ -84,6 +88,14 @@ void BrokenBrick::SetState(int State)
 	Entity::SetState(State);
 	switch (State)
 	{
+	case BROKENBRICK_STATE_COLLISION:
+		if (!isColliBrokenbrick)
+		{
+			y -= 16;
+			vy += 0.05;
+			isColliBrokenbrick = true;
+		}
+		break;
 	case STATE_HIDE:
 		isHide = true;
 		break;
@@ -103,6 +115,7 @@ void BrokenBrick::SetState(int State)
 		listPiece = { topLeftPiece, topRightPiece, bottomLeftPiece, bottomRightPiece };
 		break;
 	}
+
 	/*if (State == STATE_BRICK_NORMAL)
 	{
 

@@ -153,6 +153,7 @@
     <ClInclude Include="Money.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="P.h" />
+    <ClInclude Include="Pipe.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Gate.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Money.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="P.cpp" />
+    <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Gate.cpp" />

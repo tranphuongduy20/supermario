@@ -165,6 +165,7 @@ public:
 
 	float start_x;			// initial position of Mario at scene
 	float start_y;
+
 public:
 	Player(float x = 0.0f, float y = 0.0f);
 	static Player* GetInstance();
@@ -174,6 +175,9 @@ public:
 
 	virtual void Collision_items(vector<LPGAMEENTITY>* listitem);
 
+	float startVentTime;
+	bool isInGround, venting;
+	bool keyDown, keyUp;
 
 	void SetState(int state);
 	void SetLevel(int l) { level = l; }
@@ -197,6 +201,9 @@ public:
 	void ResetBIG();
 	void ResetRACCOON();
 	void ResetFIRE();
+
+	void ExcuteVentProcess();
+	void BeginVentProcess(bool);
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };

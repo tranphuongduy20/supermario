@@ -234,7 +234,6 @@ void PlayScene::PlayerTailAttackEnemy()
 
 			if (tail->IsCollidingObject(brokenBrick))
 			{
-				//brokenBrick->isDestroyed = true;
 				if (listObjects[i]->x == 2032 && listObjects[i]->y == 368)
 				{
 					for (UINT i = 0; i < listitems.size(); i++)
@@ -249,7 +248,6 @@ void PlayScene::PlayerTailAttackEnemy()
 					return;
 				}
 				brokenBrick->SetState(STATE_DESTROYED);
-				//DebugOut(L"reset");
 			}
 		}
 	}
@@ -538,19 +536,33 @@ void PlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_S:
 		player->SetState(MARIO_STATE_JUMP);
 		break;
+	case DIK_DOWN:
+		player->keyDown == true;
+		break;
+	case DIK_UP:
+		player->keyUp == true;
+		break;
 	case DIK_Z:
 		player->isAttack = true;
 		break;
 	case DIK_V:
+		if (player->level != MARIO_LEVEL_SMALL)
+			player->y += (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 		player->level = MARIO_LEVEL_SMALL;
 		break;
 	case DIK_B:
+		if (player->level == MARIO_LEVEL_SMALL)
+			player->y -= (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 		player->level = MARIO_LEVEL_BIG;
 		break;
 	case DIK_N:
+		if (player->level == MARIO_LEVEL_SMALL)
+			player->y -= (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 		player->level = MARIO_LEVEL_RACCOON;
 		break;
 	case DIK_M:
+		if (player->level == MARIO_LEVEL_SMALL)
+			player->y -= (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 		player->level = MARIO_LEVEL_FIRE;
 		break;
 	case DIK_A:
@@ -646,6 +658,10 @@ void PlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		break;
 	case DIK_DOWN:
 		player->isCrouch = false;
+		player->keyDown = false;
+		break;
+	case DIK_UP:
+		player->keyUp = false;
 		break;
 	case DIK_A:
 		if (player->holdthing)

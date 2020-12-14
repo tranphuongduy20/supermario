@@ -139,6 +139,9 @@
     <ClCompile Include="P.cpp">
       <Filter>Header Files\GameSource\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Pipe.cpp">
+      <Filter>Header Files\GameSource\Object\Obstacle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -278,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="P.h">
       <Filter>Header Files\GameSource\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe.h">
+      <Filter>Header Files\GameSource\Object\Obstacle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

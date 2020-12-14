@@ -41,6 +41,8 @@ class Koopa : public Entity
 {
 
 public:
+	float bLeft, bRight;
+
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEENTITY>* coObjects);
 	virtual void Render();

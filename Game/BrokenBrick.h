@@ -7,12 +7,14 @@
 #define STATE_COIN_ROTATE		2
 #define STATE_COIN_NO_ROTATE	3
 #define STATE_HIDE				4
+#define	BROKENBRICK_STATE_COLLISION	10
 #define TIME_DELAY_MAX 1500
 
 
 class BrokenBrick : public Entity
 {
 public:
+	bool isColliBrokenbrick;
 	vector<LPGAMEENTITY> listPiece;
 	ULONGLONG timeTranformation;
 	bool vanish;

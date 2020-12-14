@@ -13,11 +13,10 @@ Koopa::Koopa(Player* mario, int id_Koopa)
 		SetState(KOOPA_RED_STATE_WALKING_RIGHT);
 	else if (id_koopa == KOOPA_GREEN)
 	{
-		SetState(KOOPA_GREEN_STATE_HAS_WING_FLY_RIGHT);
+		SetState(KOOPA_GREEN_STATE_HAS_WING_FLY_LEFT);
 		timeToFly = GetTickCount64();
 
 	}
-	//DebugOut(L"aaaaaaa \n");
 }
 
 void Koopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -149,7 +148,7 @@ void Koopa::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 		{
 			if (GetTickCount64() - timeToFly > 900 && !hitByWeapon)
 			{
-				SetState(KOOPA_GREEN_STATE_HAS_WING_FLY_RIGHT);
+				SetState(KOOPA_GREEN_STATE_HAS_WING_FLY_LEFT);
 				timeToFly = GetTickCount64();
 			}
 		}
@@ -234,25 +233,27 @@ void Koopa::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 			LPCOLLISIONEVENT e = coEventsResult[i];
 			if (id_koopa == KOOPA_RED)
 			{
-				if (dynamic_cast<CBrick*>(e->obj))
+				if (dynamic_cast<Brick*>(e->obj))
 				{
-					CBrick* cbrick = dynamic_cast<CBrick*>(e->obj);
+					Brick* brick = dynamic_cast<Brick*>(e->obj);
 					if (e->nx != 0)
 					{
 						x += dx;
 					}
 					else if (e->ny < 0 && GetState() != KOOPA_RED_STATE_DIE_AND_MOVE && GetState() != KOOPA_RED_STATE_DIE_AND_MOVE_UP)
 					{
-						if (x <= cbrick->x)
+						if (x <= brick->x)
 						{
-							x = cbrick->x;
+							x = brick->x;
 							SetState(KOOPA_RED_STATE_WALKING_RIGHT);
+							vx = KOOPAS_WALKING_SPEED;
 
 						}
-						else if (x >= cbrick->x + 16 * cbrick->frameW - KOOPAS_BBOX_WIDTH)
+						else if (x >= brick->x + brick->frameW - 1 - KOOPAS_BBOX_WIDTH)
 						{
-							x = cbrick->x + 16 * cbrick->frameW - KOOPAS_BBOX_WIDTH;
+							x = brick->x + brick->frameW - 1 - KOOPAS_BBOX_WIDTH;
 							SetState(KOOPA_RED_STATE_WALKING_LEFT);
+							vx = -KOOPAS_WALKING_SPEED;
 						}
 					}
 
@@ -285,7 +286,7 @@ void Koopa::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 			}
 			else if (id_koopa == KOOPA_GREEN)
 			{
-				if (dynamic_cast<CBrick*>(e->obj))
+				if (dynamic_cast<Brick*>(e->obj))
 				{
 					if (e->nx != 0)
 					{

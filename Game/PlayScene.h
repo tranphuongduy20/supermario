@@ -103,7 +103,7 @@ public:
 	void BoundaryConstraint(float &x, float &y);
 	void PlayerTailAttackEnemy();
 	virtual void LoadSceneObjects();
-	virtual void Update(DWORD dt);
+	virtual void Update(DWORD dt);;
 	virtual void Render();
 	virtual void Unload();
 	Player* GetPlayer() { return player; }
