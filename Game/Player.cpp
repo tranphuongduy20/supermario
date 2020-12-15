@@ -185,6 +185,7 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 			}
 			else if (e->obj->GetType() == EntityType::BROKENBRICK)
 			{
+				CBrick* brick = dynamic_cast<CBrick*>(e->obj);
 				BrokenBrick* brokenbrick = dynamic_cast<BrokenBrick*>(e->obj);
 				//x += min_tx * dx + nx * 0.4f;
 				//y += min_ty * dy + ny * 0.001f;
@@ -207,6 +208,11 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 					else
 						y += dy;
 				}
+				/*if (e->ny > 0)
+				{
+					if(brokenbrick != nullptr)
+						brokenbrick->SetState(CBRICK_STATE_COLLISION);
+				}*/
 			}
 			else if (e->obj->GetType() == EntityType::CBRICK)  
 			{
@@ -230,7 +236,7 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 					brick->SetState(CBRICK_STATE_COLLISION);
 				}
 			}
-			else if (e->obj->GetType() == EntityType::BROKENBRICK)
+			/*else if (e->obj->GetType() == EntityType::BROKENBRICK)
 			{
 				BrokenBrick* brokenBrick = dynamic_cast<BrokenBrick*>(e->obj);
 				if (nx != 0) vx = 0;
@@ -251,7 +257,7 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 				{
 					brokenBrick->SetState(BROKENBRICK_STATE_COLLISION);
 				}
-			}
+			}*/
 			else if (e->obj->GetType() == EntityType::BRICKSTAND)
 			{
 				CBrick* brick = dynamic_cast<CBrick*>(e->obj);

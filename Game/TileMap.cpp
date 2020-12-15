@@ -88,9 +88,10 @@ void TileMap::Draw()
 	{
 		for (UINT j = firstcol; j <= lastcol; j++)
 		{
-			float x = tileset_width * (j - firstcol) + Game::GetInstance()->GetCamPosX() - (int)(Game::GetInstance()->GetCamPosX()) % tileset_width;
-			float y = tileset_height * i ;
-
+			int x = tileset_width * (j - firstcol) + Game::GetInstance()->GetCamPosX() - (int)(Game::GetInstance()->GetCamPosX()) % tileset_width /*+ 40*/;
+			int y = tileset_height * i/* + 200*/;
+			if (j >= num_col_on_tilemap) 
+				continue;
 			tilemap[i][j]->Draw(1, x, y);
 		}
 	}

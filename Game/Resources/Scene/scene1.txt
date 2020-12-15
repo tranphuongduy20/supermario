@@ -608,7 +608,7 @@
 16	2032	373	21
 #16	2032	350	21
 #Gate
-#2	700	400	1	200	300	0	1
+#2	520	400	1	200	300	0	1
 
 [TILEMAP]
 #tile id	file_texture	file_path	num row on tex	num col on tex	num row on tilemap	num col tilemap	tile size

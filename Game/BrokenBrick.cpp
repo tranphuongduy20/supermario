@@ -42,10 +42,10 @@ void BrokenBrick::Render()
 {
 	if (isHide)
 		return;
-	if (isColliBrokenbrick)
+	/*if (isColliBrokenbrick)
 	{
-		animationSet->at(4)->Render(nx, x, y);
-	}
+		animationSet->at(3)->Render(nx, x, y);
+	}*/
 	/*if (isDestroyed)
 		return;*/
 	RenderBoundingBox();

@@ -233,6 +233,14 @@ void Koopa::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 			LPCOLLISIONEVENT e = coEventsResult[i];
 			if (id_koopa == KOOPA_RED)
 			{
+				/*if (dynamic_cast<CBrick*>(e->obj))
+				{
+					CBrick* cbrick = dynamic_cast<CBrick*>(e->obj);
+					if (e->nx != 0)
+					{
+						x += dx;
+					}
+				}*/
 				if (dynamic_cast<Brick*>(e->obj))
 				{
 					Brick* brick = dynamic_cast<Brick*>(e->obj);
@@ -256,7 +264,10 @@ void Koopa::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 							vx = -KOOPAS_WALKING_SPEED;
 						}
 					}
-
+					else if (e->nx != 0 && GetState() == KOOPA_RED_STATE_DIE_AND_MOVE && GetState() == KOOPA_RED_STATE_DIE_AND_MOVE_UP) {
+						//this->nx = -this->nx;
+						//x += dx;
+					}
 				}
 				else if (dynamic_cast<BrokenBrick*>(e->obj))
 				{
